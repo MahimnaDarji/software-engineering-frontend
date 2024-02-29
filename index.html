@@ -48,7 +48,7 @@
                 <label>Shift:</label>
                 <input id="shift" type="number"/>
                 <button onclick="cipher()">Cipher</button>
-                <label id="cipher-result"></label>  
+                <div id="cipher-result"></div>  
             </section>           
         </div>       
      </div>
@@ -75,9 +75,10 @@
         }
         async function cipher() {
             const string = document.getElementById("text-to-cipher");            
-            const shift = document.getElementById("shift");       
+            const shift = document.getElementById("shift");    
+            // send request to server and insert the result into the div
             const response = await fetch("https://ciphers-service-honey-mahimna.onrender.com/ciphers/caesar/" + string.value + "/" + shift.value);
-            const result = await response.json();
+            const result = await response.text();
             document.getElementById("cipher-result").innerText = result;
         }
 
